@@ -1,0 +1,4 @@
+lekato_bottom_left
+lekato_bottom_right
+lekato_top_left
+lekato_top_right
