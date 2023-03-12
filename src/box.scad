@@ -1,5 +1,4 @@
 include <config.scad>
-include <GRISCAD/vectors.scad>
 include <GRISCAD/units.scad>
 
 module overlap_interior(tolerance = 0.0,
@@ -42,22 +41,17 @@ module lekato_bottom() {
                 }
             }
         }
-        /* subtract the back part. */
-        translate([BACK_BOX_OFFSET_X,
-                   BACK_BOX_OFFSET_Y,
-                   BACK_BOX_OFFSET_Z-EPSILON]) {
-            cube([BACKBOX_IW, BACKBOX_ID, BACKBOX_IH+2*EPSILON]);
-        }
-        /* subtract the front part. */
-        translate([FRONT_BOX_OFFSET_X,
-                   FRONT_BOX_OFFSET_Y,
-                   FRONT_BOX_OFFSET_Z-EPSILON]) {
-            cube([FRONTBOX_IW, FRONTBOX_ID, FRONTBOX_IH+2*EPSILON]);
+        translate([BOX_OFFSET_X,
+                   BOX_OFFSET_Y,
+                   BOX_OFFSET_Z]) {
+          cube([BOX_IW, BOX_ID, BOX_IH] + [0, 0, EPSILON]);
         }
     }
 }
 
 HALF_SPACE_SIZE=400;
+
+function DELTA3D(t) = ([t, t, t]);
 
 module negative_X_half_space() {
     translate([-HALF_SPACE_SIZE, 
